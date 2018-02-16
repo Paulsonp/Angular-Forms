@@ -1,0 +1,27 @@
+mat-form-field {
+    width: 100%;
+}
+.checkbox {
+    margin-bottom: 1em;
+}
+legend {
+    text-align: center;
+    margin-bottom: 2em;
+    margin-left: 2em;
+    margin-right: 3em;
+
+}
+legend span {
+    font-size: x-large;
+    font-weight: bold;
+}
+.alert-danger {
+    color:red;
+}
+.form-dynamic mat-form-field {
+    margin-right: 10px;
+}
+.form-dynamic button {
+    margin-right: 10px;
+}
+

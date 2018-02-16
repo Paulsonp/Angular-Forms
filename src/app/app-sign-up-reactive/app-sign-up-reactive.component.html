@@ -1,0 +1,121 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div>
+    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()" >
+        <mat-card>
+          <legend> <span>Reactive (Modern driven) form SignUp</span> </legend>
+          <!-- NgModel -->
+          <!-- <mat-form-field>
+            <input matInput ngModel id="inputEmail" name="email" placeholder="Email">
+          </mat-form-field> -->
+
+           <!-- <mat-form-field>
+            <input matInput [ngModel] = "user.email" id="inputEmail" name="email" placeholder="Email">
+          </mat-form-field> -->
+
+          <!--- Email Block -->
+          <mat-form-field>
+            <input matInput id="inputEmail" formControlName ="email"
+             placeholder="Email">
+          </mat-form-field>
+          <!-- Email error block -->
+          <div *ngIf="email.invalid && email.touched"
+            class="col-sm-3 text-danger">
+
+            <div *ngIf = "email.errors?.required">
+                Email field can't be blank
+            </div>
+
+            <div *ngIf = "email.errors?.pattern">
+                The email id doesn't seem right
+            </div>
+          </div>
+          <!--- Password Block -->
+          <div formGroupName = "password">
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput
+                  type="password" formControlName = "pwd"
+                  id="inputPassword" placeholder="Password" >
+              </mat-form-field>
+            </div>
+    
+            <div class="form-group">
+              <mat-form-field>
+                <input matInput 
+                type="password" formControlName="confirmPwd"
+                id="confirmPassword" placeholder="Confirm Password">
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="(password.invalid|| password.value?.pwd != password.value?.confirmPwd) && (password.touched)"
+              class="alert alert-danger">
+              
+              <div *ngIf = "password.invalid; else nomatch">
+                  Password needs to be more than 8 characters
+              </div>
+                  <ng-template #nomatch >
+                      Passwords don't match
+                  </ng-template>
+              </div>
+          </div>
+          <!--- Select gender Block -->
+          <div class="form-group">
+            <mat-form-field>
+              <mat-select formControlName="gender" placeholder="Gender">
+                <mat-option *ngFor="let d of genderList" [value]="d">
+                  {{ d }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Dynamically build fields -->
+
+          <div formArrayName="items"  class="form-dynamic"
+          *ngFor="let item of signupForm.get('items')['controls']; let i = index;">
+            <div fxLayout="row" fxLayoutAlign="space-between center" [formGroupName]="i">
+              <mat-form-field>
+                <input matInput formControlName="name" placeholder="Item name">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="description" placeholder="Item description">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="price" placeholder="Item price">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end center">
+              <button color="warn" mat-raised-button *ngIf="signupForm['controls'].items.controls.length > 1" 
+                (click)="deleteRow(i)" class="btn btn-danger">
+                Delete 
+              </button>
+              <button color="primary" mat-raised-button (click)="addItem()" class="btn btn-default">Add</button>
+            </div>
+            <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
+          </div>
+
+          <!--- Terms and conditions Block -->
+          <div class="form-group checkbox">
+              <label>
+                <mat-checkbox formControlName="terms">
+                  Confirm that you've read the Terms and Conditions
+                </mat-checkbox> 
+              </label>
+            </div>
+
+          <!--- Buttons Block -->
+          <div class="form-group">
+              <button color="warn" mat-raised-button type="reset" class="btn btn-default">Cancel</button>
+              <!-- <button color="primary" mat-raised-button type="submit" class="btn btn-primary"
+              [disabled]="!signupForm.form.valid">Submit</button> -->
+              <button [disabled] = "!signupForm.valid" color="primary" mat-raised-button 
+                      type="submit" class="btn btn-primary">
+                Submit
+              </button>
+          </div>
+        </mat-card>
+    </form>
+  </div>
+</div>
+<p>Form value {{ signupForm.value | json }} </p>
+     <p> Form status {{ signupForm.status | json}} </p>
