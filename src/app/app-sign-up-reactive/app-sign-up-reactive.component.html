@@ -3,15 +3,6 @@
     <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()" >
         <mat-card>
           <legend> <span>Reactive (Modern driven) form SignUp</span> </legend>
-          <!-- NgModel -->
-          <!-- <mat-form-field>
-            <input matInput ngModel id="inputEmail" name="email" placeholder="Email">
-          </mat-form-field> -->
-
-           <!-- <mat-form-field>
-            <input matInput [ngModel] = "user.email" id="inputEmail" name="email" placeholder="Email">
-          </mat-form-field> -->
-
           <!--- Email Block -->
           <mat-form-field>
             <input matInput id="inputEmail" formControlName ="email"
@@ -19,7 +10,7 @@
           </mat-form-field>
           <!-- Email error block -->
           <div *ngIf="email.invalid && email.touched"
-            class="col-sm-3 text-danger">
+            class="alert alert-danger">
 
             <div *ngIf = "email.errors?.required">
                 Email field can't be blank
