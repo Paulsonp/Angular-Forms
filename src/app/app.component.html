@@ -1,12 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div fxLayout="row" fxLayoutAlign="space-between center" >
   <h1>
-    Welcome to {{ title }}!
+    Welcome to Ngrx form App!
   </h1>
   <nav>
     <button color="primary" mat-raised-button routerLink="/form-template" routerLinkActive="active">Signup Template driven</button>
     <button color="accent" mat-raised-button routerLink="/form-reactive" routerLinkActive="active">Signup Reactive driven</button>
   </nav>
 </div>
+
+<!-- <mat-card *ngFor="let event of events | async">
+  <img mat-card-image [src]="event.picture">
+  <mat-card-header>
+  <mat-card-title>Event name: {{event.name}}</mat-card-title>
+  <mat-card-subtitle>Location: {{event.location}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>Description: {{event.description}}</mat-card-content>
+</mat-card> -->
+
+<!-- {{ events | JSON }} -->
+
 <!-- <app-app-sign-up></app-app-sign-up> -->
 <router-outlet></router-outlet>
