@@ -1,3 +1,5 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,7 +22,9 @@ import { ListRoutingModule } from './app-list.routing';
     ReactiveFormsModule,
     ListRoutingModule,
     StoreModule.forFeature('ListReducer', listReducer),
-    EffectsModule.forFeature([ListEffects])
+    EffectsModule.forFeature([ListEffects]),
+    MatCardModule,
+    FlexLayoutModule
   ],
   providers: [ ListService ],
   declarations: [

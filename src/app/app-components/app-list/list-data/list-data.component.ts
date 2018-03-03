@@ -10,10 +10,10 @@ import * as listSelector from '../../../store/list/list.selector'
 @Component({
   selector: 'app-listdata',
   templateUrl: './list-data.component.html',
-  // styleUrls: ['./list-data.component.scss']
+  styleUrls: ['./list-data.component.css']
 })
 export class ListDataComponent implements OnInit {
-  customerDetails$: Store<any[]>;
+  listDetails$: Store<any[]>;
   events$: Store<any>;
 
   constructor(public store: Store<EventState>, private router: Router) {
@@ -23,6 +23,6 @@ export class ListDataComponent implements OnInit {
 
   ngOnInit() {
     // fetch data
-    this.customerDetails$ = this.store.select(listSelector.getAllCustomer);
+    this.listDetails$ = this.store.select(listSelector.getAllCustomer);
   }
 }

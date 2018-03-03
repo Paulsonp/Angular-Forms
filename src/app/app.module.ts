@@ -7,6 +7,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { MatButtonModule, MatSelectModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpClientModule } from '@angular/common/http';
@@ -59,7 +61,9 @@ export const firebaseCredentials = {
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

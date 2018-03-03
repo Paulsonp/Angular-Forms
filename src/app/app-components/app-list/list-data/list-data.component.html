@@ -1,4 +1,10 @@
-<div  *ngFor="let item of (customerDetails$ | async)">
- <h1>{{item._id}}</h1> 
- <h1>{{item.name}}</h1> 
+<div fxLayout fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px">
+  <mat-card *ngFor="let item of (listDetails$ | async)" fxFlex="calc(25%)">
+    <img mat-card-image [src]="item.img">
+    <mat-card-header>
+    <mat-card-title>Event name: {{item.name}}</mat-card-title>
+    <mat-card-subtitle>Location: {{item.location}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>Description: {{item.description}}</mat-card-content>
+  </mat-card> 
 </div>
