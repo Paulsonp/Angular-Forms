@@ -1,8 +1,20 @@
 {
-  "events": {
+  "list" :[{
+    "error": false,
+    "_id": "1234567890",
     "name": "paulson ps",
     "location": "Trivandrum",
     "description": "Hai sdfghj",
     "img": "https://media.licdn.com/dms/image/C5103AQHkDz0ICON1Uw/profile-displayphoto-shrink_200_200/0?e=1524168000&v=alpha&t=8eoDsxnsDg1efjh4S1afi7TEWHFVa8jVb7-U3rjDtdg"
-  }
+
+  },
+  {
+    "error": false,
+    "_id": "0987654321",
+    "name": "Lenin",
+    "location": "Trivandrum",
+    "description": "Hai sdfghj",
+    "img": "https://media.licdn.com/dms/image/C5103AQHkDz0ICON1Uw/profile-displayphoto-shrink_200_200/0?e=1524168000&v=alpha&t=8eoDsxnsDg1efjh4S1afi7TEWHFVa8jVb7-U3rjDtdg"
+
+  }]
 }

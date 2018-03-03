@@ -9,16 +9,16 @@
   </nav>
 </div>
 
-<!-- <mat-card *ngFor="let event of events | async">
+<mat-card *ngFor="let event of events$ | async">
   <img mat-card-image [src]="event.picture">
   <mat-card-header>
   <mat-card-title>Event name: {{event.name}}</mat-card-title>
   <mat-card-subtitle>Location: {{event.location}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>Description: {{event.description}}</mat-card-content>
-</mat-card> -->
+</mat-card> 
 
-<!-- {{ events | JSON }} -->
+<!-- {{ events | JSON }}
 
 <!-- <app-app-sign-up></app-app-sign-up> -->
 <router-outlet></router-outlet>

@@ -16,19 +16,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { reducer } from './store/list.reducer';
-import { ListEffects } from './store/list.effect';
-import { FirebaseService } from './firebase.service';
-
 import { AppComponent } from './app.component';
 import { AppSignUpComponent } from './app-sign-up/app-sign-up.component';
 import { AppSignUpReactiveComponent } from './app-sign-up-reactive/app-sign-up-reactive.component';
-
-const appRoutes: Routes = [
-  { path: '',   redirectTo: '/form-template', pathMatch: 'full' },
-  { path: 'form-template', component: AppSignUpComponent },
-  { path: 'form-reactive', component: AppSignUpReactiveComponent },
-];
+import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { AppRoutingModule } from './app.routing';
 
 export const firebaseCredentials = {
   apiKey: "AIzaSyAdFCC-SI4IpvamGRAOL--JzmcIye0Qc_U",
@@ -43,16 +35,17 @@ export const firebaseCredentials = {
   declarations: [
     AppComponent,
     AppSignUpComponent,
-    AppSignUpReactiveComponent
+    AppSignUpReactiveComponent,
+    AppLayoutComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseCredentials),
-    StoreModule.forRoot({reducer}),
-    EffectsModule.forRoot([ListEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 60
     }),
@@ -68,7 +61,7 @@ export const firebaseCredentials = {
     MatCheckboxModule,
     MatCardModule
   ],
-  providers: [FirebaseService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,12 +3,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { HttpClient } from '@angular/common/http';
-import { ListLoad } from './store/list.model';
 import { catchError } from 'rxjs/operators';
 import { Http } from '@angular/http';
 
 @Injectable()
-export class FirebaseService {
+export class ListService {
   items: any;
   event: FirebaseListObservable<any[]>;
     constructor(private db: AngularFireDatabase, private http: HttpClient, public _http: Http) {
