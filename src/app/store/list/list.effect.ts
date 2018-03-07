@@ -9,9 +9,6 @@ import { Injectable } from '@angular/core';
 
 import { Effect, Actions } from '@ngrx/effects';
 import { switchMap, map, catchError } from 'rxjs/operators';
-
-import * as fromAction from './list.action';
-import * as fromServices from './list.service';
 import { Action, Store } from '@ngrx/store';
 
 import 'rxjs/add/observable/of';
@@ -21,19 +18,26 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/switchMap';
 
+import { AppService } from '../app.service';
+import * as fromAction from './list.action';
+import * as fromServices from './list.service';
+
 @Injectable()
 export class ListEffects {
     constructor(private actions: Actions,
         private service: fromServices.ListService,
-        public store: Store<any>) {}
+        public store: Store<any>,
+        public _appService: AppService) {}
         
 
     
     @Effect()
     public fetchEvents$: Observable<Action> = this.actions.ofType(fromAction.FETCH_EVENTS).pipe(
         switchMap((action: fromAction.FetchEvents) => {
+            this._appService.spinner.emit(true);
             return this.service.getEvent().pipe(
                 map((action: any)=> {
+                    this._appService.spinner.emit(false);
                     console.log('DATA : ', action);
                     // if (action.error === false) {
                         return new fromAction.FetchEventsSuccess(action);

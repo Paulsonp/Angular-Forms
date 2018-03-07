@@ -1,5 +1,5 @@
 <div fxLayout fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px">
-  <mat-card *ngFor="let item of (listDetails$ | async)" fxFlex="calc(25%)">
+  <mat-card *ngFor="let item of let item of (coursesObservable$ | async)" fxFlex="calc(25%)">
     <img mat-card-image [src]="item.img">
     <mat-card-header>
     <mat-card-title>Event name: {{item.name}}</mat-card-title>
@@ -8,3 +8,17 @@
     <mat-card-content>Description: {{item.description}}</mat-card-content>
   </mat-card> 
 </div>
+
+<!-- {{ (coursesObservable | async) | json }} 
+<ul>
+  <div *ngFor="let course of coursesObservable | async">
+    <h1>ghjk</h1>
+      <ngb-alert type="info" [dismissible]="false">
+          <h3><p>{{course.location}}</p> </h3>
+          <p>{{course.bookingTime}}</p>
+          <div>
+              <p>Go To Course</p>
+          </div>
+  </div>
+</ul> -->
+<!-- *ngFor="let item of (listDetails$ | async)" -->

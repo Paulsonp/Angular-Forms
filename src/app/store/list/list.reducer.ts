@@ -23,7 +23,7 @@ export function listReducer( state = initialState,
         }
       }
      case EventActions.FETCH_EVENTS_SUCCESS: {
-      const events = action.payload.list;
+      const events = action.payload;
       console.log("hai", action.payload )
       const entities = events.reduce(
           // tslint:disable-next-line:no-shadowed-variable

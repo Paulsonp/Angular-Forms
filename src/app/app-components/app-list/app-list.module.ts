@@ -1,5 +1,6 @@
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,6 +25,7 @@ import { ListRoutingModule } from './app-list.routing';
     StoreModule.forFeature('ListReducer', listReducer),
     EffectsModule.forFeature([ListEffects]),
     MatCardModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule
   ],
   providers: [ ListService ],

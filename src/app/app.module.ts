@@ -9,6 +9,8 @@ import { MatButtonModule, MatSelectModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +25,7 @@ import { AppSignUpComponent } from './app-sign-up/app-sign-up.component';
 import { AppSignUpReactiveComponent } from './app-sign-up-reactive/app-sign-up-reactive.component';
 import { AppLayoutComponent } from './app-layout/app-layout.component';
 import { AppRoutingModule } from './app.routing';
+import { AppService } from './store/app.service';
 
 export const firebaseCredentials = {
   apiKey: "AIzaSyAdFCC-SI4IpvamGRAOL--JzmcIye0Qc_U",
@@ -63,9 +66,11 @@ export const firebaseCredentials = {
     MatCheckboxModule,
     MatCardModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
