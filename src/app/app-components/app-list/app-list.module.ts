@@ -1,6 +1,9 @@
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
+import { AddListComponent } from './list-add/list-add.component';
 import { ListDataComponent } from './list-data/list-data.component';
 import { ListService } from './../../store/list/list.service';
 import { ListEffects } from './../../store/list/list.effect';
@@ -26,12 +31,19 @@ import { ListRoutingModule } from './app-list.routing';
     EffectsModule.forFeature([ListEffects]),
     MatCardModule,
     MatProgressSpinnerModule,
-    FlexLayoutModule
+    MatButtonModule,
+    MatDialogModule,
+    FlexLayoutModule,
+    MatInputModule,
+    FormsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [ ListService ],
+  providers: [ ListService, ToastrService ],
   declarations: [
-    ListDataComponent
-  ]
+    ListDataComponent,
+    AddListComponent
+  ],
+  entryComponents: [ AddListComponent ]
 })
 
 export class AppListModule { }

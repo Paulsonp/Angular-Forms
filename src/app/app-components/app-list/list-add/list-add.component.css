@@ -1,0 +1,6 @@
+form div mat-form-field {
+    width: 100%;
+}
+div .btn-reset {
+    margin-right: 10px;
+}

@@ -9,6 +9,29 @@
   </mat-card> 
 </div>
 
+
+<h6 class="text-center">Employee Register</h6><br/>
+<table class="table table-sm table-hover">
+  <tr *ngFor="let employee of employeeList">
+      <td>{{employee.name}}</td>
+      <td>{{employee.position}}</td>
+      <td>
+        <a class="btn" (click)="onEdit(employee)">
+          edit
+        </a>
+        <a class="btn" (click)="onDelete(employee.$key)">
+         delete
+        </a>
+      </td>
+  </tr>
+</table>
+
+<div class="add-btn">
+  <button mat-button mat-fab (click)="openAddFileDialog()">
+    <i class="material-icons">add</i>
+  </button>
+</div>
+
 <!-- {{ (coursesObservable | async) | json }} 
 <ul>
   <div *ngFor="let course of coursesObservable | async">
