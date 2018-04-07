@@ -1,6 +1,13 @@
 form div mat-form-field {
-    width: 100%;
+  width: 100%;
 }
 div .btn-reset {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+.photo-section {
+  padding-bottom: 1em;
+}
+.photo-section input {
+  width: 200px;
+  padding-left: 10px;
 }
