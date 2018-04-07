@@ -1,6 +1,10 @@
 div {
   margin: 1em;
 }
+.rupee {
+  color: #f44336;
+  font-weight: bold;
+}
 .add-btn {
   position: fixed;
   right: 1em;

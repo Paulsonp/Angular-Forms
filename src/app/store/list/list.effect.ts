@@ -24,46 +24,64 @@ import * as fromServices from './list.service';
 
 @Injectable()
 export class ListEffects {
-    constructor(private actions: Actions,
-        private service: fromServices.ListService,
-        public store: Store<any>,
-        public _appService: AppService) {}
-        
+  constructor(
+    private actions: Actions,
+    private service: fromServices.ListService,
+    public store: Store<any>,
+    public _appService: AppService
+  ) {}
 
-    
-    @Effect()
-    public fetchEvents$: Observable<Action> = this.actions.ofType(fromAction.FETCH_EVENTS).pipe(
-        switchMap((action: fromAction.FetchEvents) => {
-            this._appService.spinner.emit(true);
-            return this.service.getEvent().pipe(
-                map((action: any)=> {
-                    this._appService.spinner.emit(false);
-                    console.log('DATA : ', action);
-                    // if (action.error === false) {
-                        return new fromAction.FetchEventsSuccess(action);
-                    // } else {
-                    //     return new fromAction.FetchEventsFail(action);
-                    // }
-                })
-            )
-        }),
-        catchError(err => of(new fromAction.FetchEventsFail(err))) // dispatch fail state
-    );
+  @Effect()
+  public fetchEvents$: Observable<Action> = this.actions.ofType(fromAction.FETCH_EVENTS).pipe(
+    switchMap((action: fromAction.FetchEvents) => {
+      this._appService.spinner.emit(true);
+      return this.service.getEvent().pipe(
+        map((action: any) => {
+          this._appService.spinner.emit(false);
+          console.log('DATA : ', action);
+          // if (action.error === false) {
+          return new fromAction.FetchEventsSuccess(action);
+          // } else {
+          //     return new fromAction.FetchEventsFail(action);
+          // }
+        })
+      );
+    }),
+    catchError(err => of(new fromAction.FetchEventsFail(err))) // dispatch fail state
+  );
+  @Effect()
+  public addEmployee$: Observable<Action> = this.actions.ofType(fromAction.FETCH_ADD_EVENTS).pipe(
+    switchMap((action: fromAction.FetchEvents) => {
+      this._appService.spinner.emit(true);
+      return this.service.getEvent().pipe(
+        map((action: any) => {
+          this._appService.spinner.emit(false);
+          console.log('DATA : ', action);
+          // if (action.error === false) {
+          return new fromAction.FetchAddEventsSuccess(action);
+          // } else {
+          //     return new fromAction.FetchEventsFail(action);
+          // }
+        })
+      );
+    }),
+    catchError(err => of(new fromAction.FetchEventsFail(err))) // dispatch fail state
+  );
 }
 
-    // public fetchEvents$: Observable<Action> = this.actions
-    //     .ofType(fromAction.FETCH_EVENTS)
-    //     .switchMap((action: any) =>
-    //         this.service.getEvent()
-    //         .switchMap((res: any) => {
-    //             console.log('DATA : ', res);
-    //             // if (res.error === false) {
-    //                 return Observable.of(new fromAction.FetchEventsSuccess(res)); // Dispatch success state
-    //             // }
-    //         }),
-    //         catchError(err => of(new fromAction.FetchEventsFail(err))) // dispatch fail state
-    //         );
-    // }
+// public fetchEvents$: Observable<Action> = this.actions
+//     .ofType(fromAction.FETCH_EVENTS)
+//     .switchMap((action: any) =>
+//         this.service.getEvent()
+//         .switchMap((res: any) => {
+//             console.log('DATA : ', res);
+//             // if (res.error === false) {
+//                 return Observable.of(new fromAction.FetchEventsSuccess(res)); // Dispatch success state
+//             // }
+//         }),
+//         catchError(err => of(new fromAction.FetchEventsFail(err))) // dispatch fail state
+//         );
+// }
 
 // @Effect()
 //     addUser$ = this._action$.ofType(fromActions.ADD_USER).pipe(

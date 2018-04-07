@@ -1,77 +1,93 @@
 <div fxLayout="row" fxLayoutAlign="center center">
   <div>
     <form #signupForm="ngForm" novalidate (ngSubmit)="onFormSubmit(signupForm)">
-        <mat-card>
-          <legend> <span>Template-driven form SignUp</span> </legend>
-          <!-- NgModel -->
-          <!-- <mat-form-field>
-            <input matInput ngModel id="inputEmail" name="email" placeholder="Email">
-          </mat-form-field> -->
+      <mat-card>
+        <legend>
+          <span>Template-driven form SignUp</span>
+        </legend>
+        <!-- NgModel -->
+        <!-- <mat-form-field>
+          <input matInput ngModel id="inputEmail" name="email" placeholder="Email">
+        </mat-form-field> -->
+        <!-- 
+        <mat-form-field>
+          <input matInput ngModel name="name" placeholder="Your full name"  #userName="ngModel" minlength="2" required>
+        </mat-form-field> -->
 
-           <!-- <mat-form-field>
-            <input matInput [ngModel] = "user.email" id="inputEmail" name="email" placeholder="Email">
-          </mat-form-field> -->
+        <!-- name -->
 
-          <!--- Email Block -->
-          <mat-form-field>
-            <input matInput  #email="ngModel"
-                  [(ngModel)] = "user.email" id="inputEmail"
-                  name="email" placeholder="Email"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                  required>
-          </mat-form-field>
-          <div *ngIf="email.invalid && (email.dirty || email.touched)"
-            class="alert alert-danger">
-            <div *ngIf = "email.errors?.required">
-                Email field can't be blank
-            </div>
-            <div *ngIf = "email.errors?.pattern && email.touched">
-                The email id doesn't seem right
-            </div>
+        <!-- <div *ngIf="userName.errors?.required && userName.touched" class="error">
+          Name is required
         </div>
-          <!--- Password Block -->
-          <div ngModelGroup="password" #userPassword="ngModelGroup" required >
-            <div class="form-group">
-              <mat-form-field>
-                <input matInput
-                  type="password" [(ngModel)] = "user.password.pwd" name="pwd"
-                  id="inputPassword" placeholder="Password"
-                  minlength ="8" required>
-              </mat-form-field>
-            </div>
-    
-            <div class="form-group">
-              <mat-form-field>
-                <input matInput 
-                type="password" [(ngModel)] = "user.password.confirmPwd" name="confirmPwd"
-                id="confirmPassword" placeholder="Confirm Password" required>
-              </mat-form-field>
-            </div>
+        <div *ngIf="userName.errors?.minlength && userName.touched" class="error">
+          Minimum of 2 characters
+        </div> -->
 
-            <div *ngIf="(userPassword.invalid|| userPassword.value?.pwd != userPassword.value?.confirmPwd) && (userPassword.touched)"
-              class="alert alert-danger">
-              
-              <div *ngIf = "userPassword.invalid; else nomatch">
-                  Password needs to be more than 8 characters
-              </div>
-                  <ng-template #nomatch >
-                      Passwords don't match
-                  </ng-template>
-              </div>
+        <!-- <mat-form-field>
+          <input matInput [ngModel]="user.email" id="inputEmail" name="email" placeholder="Email">
+        </mat-form-field> -->
+
+        <!-- account: { email, confirm } -->
+        <!-- <div *ngIf="userEmail.errors?.required && userEmail.touched" class="error">
+        Email is required
+      </div>
+      <div *ngIf="userConfirm.errors?.required && userConfirm.touched" class="error">
+        Confirming email is required
+      </div> -->
+
+        <!--- Email Block -->
+        <mat-form-field>
+          <input matInput #email="ngModel" [(ngModel)]="user.email" id="inputEmail" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            required>
+        </mat-form-field>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors?.required">
+            Email field can't be blank
           </div>
-          <!--- Select gender Block -->
+          <div *ngIf="email.errors?.pattern && email.touched">
+            The email id doesn't seem right
+          </div>
+        </div>
+        <!--- Password Block -->
+        <div ngModelGroup="password" #userPassword="ngModelGroup" required>
           <div class="form-group">
             <mat-form-field>
-              <mat-select [(ngModel)] = "user.gender" name = "gender" placeholder="Gender">
-                <mat-option *ngFor="let d of gender" [value]="d">
-                  {{ d }}
-                </mat-option>
-              </mat-select>
+              <input matInput type="password" [(ngModel)]="user.password.pwd" name="pwd" id="inputPassword" placeholder="Password" minlength="8"
+                required>
             </mat-form-field>
           </div>
-             
-          <!--- Terms and conditions Block -->
-          <!-- <div class="form-group checkbox">
+
+          <div class="form-group">
+            <mat-form-field>
+              <input matInput type="password" [(ngModel)]="user.password.confirmPwd" name="confirmPwd" id="confirmPassword" placeholder="Confirm Password"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="(userPassword.invalid|| userPassword.value?.pwd != userPassword.value?.confirmPwd) && (userPassword.touched)"
+            class="alert alert-danger">
+
+            <div *ngIf="userPassword.invalid; else nomatch">
+              Password needs to be more than 8 characters
+            </div>
+            <ng-template #nomatch>
+              Passwords don't match
+            </ng-template>
+          </div>
+        </div>
+        <!--- Select gender Block -->
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select [(ngModel)]="user.gender" name="gender" placeholder="Gender">
+              <mat-option *ngFor="let d of gender" [value]="d">
+                {{ d }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!--- Terms and conditions Block -->
+        <!-- <div class="form-group checkbox">
             <label>
               <mat-checkbox>
                 Confirm that you've read the Terms and Conditions
@@ -79,18 +95,17 @@
             </label>
           </div>
            -->
-          <!--- Buttons Block -->
-          <div class="form-group">
-              <button color="warn" mat-raised-button type="reset" class="btn btn-default">Cancel</button>
-              <!-- <button color="primary" mat-raised-button type="submit" class="btn btn-primary"
+        <!--- Buttons Block -->
+        <div class="form-group">
+          <button color="warn" mat-raised-button type="reset" class="btn btn-default">Cancel</button>
+          <!-- <button color="primary" mat-raised-button type="submit" class="btn btn-primary"
               [disabled]="!signupForm.form.valid">Submit</button> -->
-              <button color="primary" mat-raised-button 
-                      type="submit" class="btn btn-primary">
-                Submit
-              </button>
-          </div>
-        </mat-card>
+          <button color="primary" mat-raised-button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </mat-card>
     </form>
   </div>
 </div>
- {{user | json}}
+{{user | json}}

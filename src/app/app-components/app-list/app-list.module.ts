@@ -4,10 +4,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -38,12 +37,8 @@ import { ListRoutingModule } from './app-list.routing';
     FormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [ ListService, ToastrService ],
-  declarations: [
-    ListDataComponent,
-    AddListComponent
-  ],
-  entryComponents: [ AddListComponent ]
+  providers: [ListService, ToastrService],
+  declarations: [ListDataComponent, AddListComponent],
+  entryComponents: [AddListComponent]
 })
-
-export class AppListModule { }
+export class AppListModule {}

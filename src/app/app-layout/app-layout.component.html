@@ -1,17 +1,17 @@
-<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" >
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <h1>
-    Welcome to Ngrx form App!
+    {{hideDetails}}
   </h1>
   <nav>
     <span [matMenuTriggerFor]="menu">
-        <i class="material-icons">more_vert</i>
+      <i class="material-icons">more_vert</i>
     </span>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/form-template" routerLinkActive="active">Template driven Form</button>
       <button mat-menu-item routerLink="/form-reactive" routerLinkActive="active">Reactive driven Form</button>
     </mat-menu>
   </nav>
-</mat-toolbar >
+</mat-toolbar>
 
 <div>
   <router-outlet></router-outlet>

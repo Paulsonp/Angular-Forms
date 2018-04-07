@@ -1,30 +1,45 @@
 <div fxLayout fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="15px">
   <mat-card *ngFor="let item of let item of (coursesObservable$ | async)" fxFlex="calc(25%)">
-    <img mat-card-image [src]="item.img">
+    <img mat-card-image [src]="item.img?.value">
     <mat-card-header>
-    <mat-card-title>Event name: {{item.name}}</mat-card-title>
-    <mat-card-subtitle>Location: {{item.location}}</mat-card-subtitle>
+      <mat-card-title>Name: {{item.name}}</mat-card-title>
+      <mat-card-subtitle>Location: {{item.location}}</mat-card-subtitle>
+      <mat-card-subtitle>Position: {{item.position}}</mat-card-subtitle>
+      <mat-card-subtitle>Office: {{item.location}}</mat-card-subtitle>
+      <mat-card-subtitle class="rupee">Salary: {{item.salary | currency: 'INR':true:'1.0'}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>Description: {{item.description}}</mat-card-content>
-  </mat-card> 
+    <div>
+      <a class="btn" (click)="onEdit(item._id)">
+        edit
+      </a>
+      <a class="btn" (click)="onDelete(item._id)">
+        delete
+      </a>
+    </div>
+  </mat-card>
 </div>
 
 
-<h6 class="text-center">Employee Register</h6><br/>
+<!-- <h6 class="text-center">Employee Register</h6>
+<br/>
 <table class="table table-sm table-hover">
   <tr *ngFor="let employee of employeeList">
-      <td>{{employee.name}}</td>
-      <td>{{employee.position}}</td>
-      <td>
-        <a class="btn" (click)="onEdit(employee)">
-          edit
-        </a>
-        <a class="btn" (click)="onDelete(employee.$key)">
-         delete
-        </a>
-      </td>
+    <td>{{employee.name}}</td>
+    <td>{{employee.position}}</td>
+    <td>
+      <img mat-card-image [src]="employee.avatar">
+    </td>
+    <td>
+      <a class="btn" (click)="onEdit(employee)">
+        edit
+      </a>
+      <a class="btn" (click)="onDelete(employee.$key)">
+        delete
+      </a>
+    </td>
   </tr>
-</table>
+</table> -->
 
 <div class="add-btn">
   <button mat-button mat-fab (click)="openAddFileDialog()">

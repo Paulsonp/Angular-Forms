@@ -6,9 +6,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { EventState } from './../../../store/list/list.reducer';
-import * as fromActions from '../../../store/list/list.action'
-import * as listSelector from '../../../store/list/list.selector'
-
+import * as fromActions from '../../../store/list/list.action';
+import * as listSelector from '../../../store/list/list.selector';
 
 import { map, catchError } from 'rxjs/operators';
 
@@ -23,47 +22,45 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { AddListComponent } from '../list-add/list-add.component';
 import { ListService } from '../../../store/list/list.service';
 import { Employee } from '../../../store/list/list.model';
+import { AppService } from '../../../store/app.service';
 @Component({
   selector: 'app-listdata',
   templateUrl: './list-data.component.html',
   styleUrls: ['./list-data.component.css']
 })
 export class ListDataComponent implements OnInit {
+  hideDetails: 'Welcome Page';
   coursesObservable$: Store<any[]>;
   events$: Store<any>;
   employeeList: Employee[];
   fileNameDialogRef: MatDialogRef<AddListComponent>;
   // coursesObservable: Observable<any[]>;
 
-  constructor(public store: Store<EventState>, private router: Router,
-     private db: AngularFireDatabase, private dialog: MatDialog,
-     private employeeService: ListService, private tostr: ToastrService) {
+  constructor(
+    public store: Store<EventState>,
+    private router: Router,
+    private db: AngularFireDatabase,
+    private dialog: MatDialog,
+    private employeeService: ListService,
+    private tostr: ToastrService,
+    public _appService: AppService
+  ) {
     this.store.dispatch(new fromActions.FetchEvents());
-    this.events$ = this.store.select(state => state.events);
-
-    // this.coursesObservable = this.getCourses('/list').map(snapshot => {
-    //   const result = snapshot.map(data => {
-    //     return {
-    //       ...data.payload.val()
-    //     };
-    //   });
-    //   return result;
-    // })
-    
-    //   console.log('data from firebase', this.coursesObservable)
+    // this.events$ = this.store.select(state => state.events);
+    this._appService.title.emit('EMPLOYEESS LIST');
   }
 
   ngOnInit() {
-    var x = this.employeeService.getData();
-    x.snapshotChanges().subscribe(item => {
-      this.employeeList = [];
-      item.forEach(element => {
-        var y = element.payload.toJSON();
-        y["$key"] = element.key;
-        this.employeeList.push(y as Employee);
-      });
-      console.log('data employee:', this.employeeList);
-    });
+    // var x = this.employeeService.getData();
+    // x.snapshotChanges().subscribe(item => {
+    //   this.employeeList = [];
+    //   item.forEach(element => {
+    //     var y = element.payload.toJSON();
+    //     y['$key'] = element.key;
+    //     this.employeeList.push(y as Employee);
+    //   });
+    //   console.log('data employee:', this.employeeList);
+    // });
 
     // fetch data
     this.coursesObservable$ = this.store.select(listSelector.getAllCustomer);
@@ -74,16 +71,16 @@ export class ListDataComponent implements OnInit {
     this.fileNameDialogRef = this.dialog.open(AddListComponent);
   }
 
-  onDelete(key: string) {
+  onDelete(_id) {
     if (confirm('Are you sure to delete this record ?') == true) {
-      this.employeeService.deleteEmployee(key);
-      this.tostr.warning("Deleted Successfully", "Employee register");
+      this.employeeService.deleteEmployee(_id);
+      this.tostr.warning('Deleted Successfully', 'Employee register');
     }
   }
 
   openAddFileDialog() {
     this.fileNameDialogRef = this.dialog.open(AddListComponent, {
-      width: '400px',
+      width: '400px'
     });
   }
 

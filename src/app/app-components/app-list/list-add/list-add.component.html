@@ -1,24 +1,39 @@
-<form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
-    <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="_addService.selectedEmployee.$key">
+<form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit()">
+  <!-- <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="_addService.selectedEmployee.$key"> -->
   <div class="form-group">
     <mat-form-field class="example-full-width">
-      <input matInput name="name" #name="ngModel" [(ngModel)]="_addService.selectedEmployee.name" placeholder="Full Name" required>
+      <input matInput formControlName="name" placeholder="Full Name">
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field class="example-full-width">
-      <input matInput  name="position" #position="ngModel" [(ngModel)]="_addService.selectedEmployee.position" placeholder="Position" required>
+      <input matInput formControlName="location" placeholder="Location">
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field class="example-full-width">
-      <input matInput name="office" #office="ngModel" [(ngModel)]="_addService.selectedEmployee.office" placeholder="Office" required>
+      <input matInput formControlName="position" placeholder="Position">
     </mat-form-field>
   </div>
   <div class="form-group">
     <mat-form-field class="example-full-width">
-      <input matInput name="salary" #salary="ngModel" [(ngModel)]="_addService.selectedEmployee.salary" placeholder="Salary" required>
+      <input matInput formControlName="office" placeholder="Office">
     </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="salary" placeholder="Salary">
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Discription" formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
+  <!-- (change)="upload($event)" -->
+  <div class="form-group">
+    <label for="file">File:</label>
+    <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
   </div>
   <div class="form-group" fxLayout="row" fxLayoutAlign="end center">
     <button class="btn-reset" color="warn" mat-button mat-raised-button type="button" (click)="resetForm(employeeForm)">
